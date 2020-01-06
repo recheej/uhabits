@@ -91,6 +91,19 @@ public class SQLiteHabitList extends HabitList
     }
 
     @Override
+    public synchronized void duplicateHabit(@NonNull Habit habit) {
+        loadRecords();
+
+        HabitRecord record = new HabitRecord();
+        record.copyFrom(habit, false, size());
+        repository.save(record);
+        rebuildOrder();
+
+        loadRecords();
+        getObservable().notifyListeners();
+    }
+
+    @Override
     @Nullable
     public synchronized Habit getById(long id)
     {

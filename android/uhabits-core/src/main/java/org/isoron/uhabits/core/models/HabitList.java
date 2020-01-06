@@ -75,6 +75,13 @@ public abstract class HabitList implements Iterable<Habit>
         throws IllegalArgumentException;
 
     /**
+     * Duplicates existing habit.
+     *  @param habit the habit to be inserted
+     *
+     */
+    public abstract void duplicateHabit(@NonNull Habit habit)
+
+    /**
      * Returns the habit with specified id.
      *
      * @param id the id of the habit

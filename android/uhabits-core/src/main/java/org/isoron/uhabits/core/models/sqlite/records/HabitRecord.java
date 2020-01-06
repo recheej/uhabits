@@ -78,7 +78,15 @@ public class HabitRecord
     @Column
     public Long id;
 
-    public void copyFrom(Habit model)
+    public void copyFrom(Habit model) {
+        copyFrom(model, true);
+    }
+
+    public void copyFrom(Habit model, boolean copyReminder) {
+        copyFrom(model, copyReminder, model.getPosition());
+    }
+
+    public void copyFrom(Habit model, boolean copyReminder, Integer position)
     {
         this.id = model.getId();
         this.name = model.getName();
@@ -90,7 +98,7 @@ public class HabitRecord
         this.targetType = model.getTargetType();
         this.targetValue = model.getTargetValue();
         this.unit = model.getUnit();
-        this.position = model.getPosition();
+        this.position = position;
 
         Frequency freq = model.getFrequency();
         this.freqNum = freq.getNumerator();
@@ -99,7 +107,7 @@ public class HabitRecord
         this.reminderMin = null;
         this.reminderHour = null;
 
-        if (model.hasReminder())
+        if (copyReminder && model.hasReminder())
         {
             Reminder reminder = model.getReminder();
             this.reminderHour = reminder.getHour();
