@@ -75,6 +75,10 @@ public class ShowHabitMenuBehavior
         screen.showEditHabitScreen(habit);
     }
 
+    public void onAddHabitRepetition() {
+        screen.showAddHabitRepetitionScreen();
+    }
+
     public void onExportCSV()
     {
         List<Habit> selected = Collections.singletonList(habit);
@@ -137,6 +141,8 @@ public class ShowHabitMenuBehavior
                 @NonNull OnConfirmedCallback callback);
 
         void close();
+
+        void showAddHabitRepetitionScreen();
     }
 
     public interface System

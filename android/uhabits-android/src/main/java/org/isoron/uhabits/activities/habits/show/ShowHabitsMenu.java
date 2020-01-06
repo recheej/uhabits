@@ -67,6 +67,10 @@ public class ShowHabitsMenu extends BaseMenu
                 behavior.get().onEditHabit();
                 return true;
 
+            case R.id.action_add_repetition:
+                behavior.get().onAddHabitRepetition();
+                return true;
+
             case R.id.export:
                 behavior.get().onExportCSV();
                 return true;

@@ -28,6 +28,7 @@
     <string name="archive">Archive</string>
     <string name="unarchive">Unarchive</string>
     <string name="add_habit">Add habit</string>
+    <string name="add_repitition">Add repetition</string>
     <string name="color_picker_default_title">Change color</string>
 
     <string name="toast_habit_created">Habit created</string>

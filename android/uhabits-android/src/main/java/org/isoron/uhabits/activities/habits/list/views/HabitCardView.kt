@@ -191,14 +191,6 @@ class HabitCardView(
     }
 
     private fun copyAttributesFrom(h: Habit) {
-
-        fun getActiveColor(habit: Habit): Int {
-            return when (habit.isArchived) {
-                true -> sres.getColor(R.attr.mediumContrastTextColor)
-                false -> PaletteUtils.getColor(context, habit.color)
-            }
-        }
-
         val c = getActiveColor(h)
         label.apply {
             text = h.name

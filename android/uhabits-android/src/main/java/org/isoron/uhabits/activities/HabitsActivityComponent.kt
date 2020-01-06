@@ -24,6 +24,7 @@ import org.isoron.androidbase.activities.*
 import org.isoron.uhabits.*
 import org.isoron.uhabits.activities.about.*
 import org.isoron.uhabits.activities.common.dialogs.*
+import org.isoron.uhabits.activities.habits.edit.AddHabitRepetitionDialog
 import org.isoron.uhabits.activities.habits.list.*
 import org.isoron.uhabits.activities.habits.list.views.*
 import org.isoron.uhabits.activities.habits.show.*
@@ -52,4 +53,5 @@ interface HabitsActivityComponent {
     val listHabitsSelectionMenu: ListHabitsSelectionMenu
     val showHabitScreen: ShowHabitScreen
     val themeSwitcher: AndroidThemeSwitcher
+    fun inject(dialog: AddHabitRepetitionDialog)
 }

@@ -29,6 +29,7 @@ import android.widget.*
 import android.widget.RelativeLayout.*
 import org.isoron.androidbase.utils.*
 import org.isoron.uhabits.*
+import org.isoron.uhabits.core.models.Habit
 
 fun RelativeLayout.addBelow(view: View,
                             subject: View,
@@ -97,3 +98,8 @@ fun View.dp(value: Float) = InterfaceUtils.dpToPixels(context, value)
 fun View.str(id: Int) = resources.getString(id)
 val View.sres: StyledResources
     get() = StyledResources(context)
+fun View.getActiveColor(habit: Habit): Int =
+        if (habit.isArchived) getMediumContrastColor()
+        else PaletteUtils.getColor(context, habit.color)
+fun View.getMediumContrastColor() =
+        sres.getColor(R.attr.mediumContrastTextColor)

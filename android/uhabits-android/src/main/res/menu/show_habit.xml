@@ -32,9 +32,15 @@
         app:showAsAction="never"/>
 
     <item
+        android:id="@+id/action_add_repetition"
+        android:icon="?iconAdd"
+        android:title="@string/edit"
+        app:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/action_edit_habit"
         android:icon="?iconEdit"
-        android:title="@string/edit"
+        android:title="@string/add_repitition"
         app:showAsAction="ifRoom"/>
 
     <item

@@ -102,7 +102,7 @@ class HeaderView(
             textSize = dim(R.dimen.tinyTextSize)
             textAlign = Paint.Align.CENTER
             typeface = Typeface.DEFAULT_BOLD
-            color = sres.getColor(R.attr.mediumContrastTextColor)
+            color = getMediumContrastColor()
         }
 
         fun draw(canvas: Canvas) {

@@ -19,19 +19,26 @@
 
 package org.isoron.uhabits.activities.habits.show;
 
-import android.support.annotation.*;
+import android.support.annotation.NonNull;
 
-import org.isoron.androidbase.activities.*;
-import org.isoron.uhabits.*;
-import org.isoron.uhabits.activities.common.dialogs.*;
-import org.isoron.uhabits.activities.habits.edit.*;
-import org.isoron.uhabits.core.models.*;
-import org.isoron.uhabits.core.ui.callbacks.*;
-import org.isoron.uhabits.core.ui.screens.habits.show.*;
+import org.isoron.androidbase.activities.ActivityScope;
+import org.isoron.androidbase.activities.BaseActivity;
+import org.isoron.androidbase.activities.BaseScreen;
+import org.isoron.uhabits.R;
+import org.isoron.uhabits.activities.common.dialogs.ConfirmDeleteDialogFactory;
+import org.isoron.uhabits.activities.common.dialogs.HistoryEditorDialog;
+import org.isoron.uhabits.activities.habits.edit.AddHabitRepetitionDialog;
+import org.isoron.uhabits.activities.habits.edit.EditHabitDialogFactory;
+import org.isoron.uhabits.core.models.Habit;
+import org.isoron.uhabits.core.models.HabitList;
+import org.isoron.uhabits.core.models.Timestamp;
+import org.isoron.uhabits.core.ui.callbacks.OnConfirmedCallback;
+import org.isoron.uhabits.core.ui.screens.habits.show.ShowHabitBehavior;
+import org.isoron.uhabits.core.ui.screens.habits.show.ShowHabitMenuBehavior;
 
-import javax.inject.*;
+import javax.inject.Inject;
 
-import dagger.*;
+import dagger.Lazy;
 
 @ActivityScope
 public class ShowHabitScreen extends BaseScreen
@@ -50,10 +57,12 @@ public class ShowHabitScreen extends BaseScreen
     private final ConfirmDeleteDialogFactory confirmDeleteDialogFactory;
 
     private final Lazy<ShowHabitBehavior> behavior;
+    private HabitList habitList;
 
     @Inject
     public ShowHabitScreen(@NonNull BaseActivity activity,
                            @NonNull Habit habit,
+                           @NonNull HabitList habitList,
                            @NonNull ShowHabitRootView view,
                            @NonNull ShowHabitsMenu menu,
                            @NonNull EditHabitDialogFactory editHabitDialogFactory,
@@ -65,6 +74,7 @@ public class ShowHabitScreen extends BaseScreen
         setRootView(view);
 
         this.habit = habit;
+        this.habitList = habitList;
         this.behavior = behavior;
         this.editHabitDialogFactory = editHabitDialogFactory;
         this.confirmDeleteDialogFactory = confirmDeleteDialogFactory;
@@ -103,6 +113,13 @@ public class ShowHabitScreen extends BaseScreen
     public void showEditHabitScreen(@NonNull Habit habit)
     {
         activity.showDialog(editHabitDialogFactory.edit(habit), "editHabit");
+    }
+
+    @Override
+    public void showAddHabitRepetitionScreen() {
+//        //todo: show dialog for add repetition
+        final AddHabitRepetitionDialog addHabitRepetitionDialog = AddHabitRepetitionDialog.newInstance(habit.getId());
+        activity.showDialog(addHabitRepetitionDialog, "AddHabitRepetitionDialog");
     }
 
     @Override
